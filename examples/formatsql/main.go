@@ -2,8 +2,10 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
+	"os"
 
 	local_servicepb "github.com/apstndb/go-zetasql-genproto/zetasql/local_service/local_servicepb"
 	"google.golang.org/grpc"
@@ -27,9 +29,13 @@ func _main() error {
 	if err != nil {
 		return err
 	}
+
+	if len(os.Args) != 2 {
+		return errors.New("args must be formatsql [SQL]")
+	}
 	ctx := context.Background()
 	client := local_servicepb.NewZetaSqlLocalServiceClient(conn)
-	resp, err := client.FormatSql(ctx, &local_servicepb.FormatSqlRequest{Sql: String("SELECT * FROM `tbl`")})
+	resp, err := client.FormatSql(ctx, &local_servicepb.FormatSqlRequest{Sql: String(os.Args[1])})
 	if err != nil {
 		return err
 	}
