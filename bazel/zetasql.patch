@@ -1,0 +1,50 @@
+--- zetasql/local_service/BUILD
++++ zetasql/local_service/BUILD
+@@ -18,7 +18,7 @@ load("@com_github_grpc_grpc//bazel:cc_grpc_library.bzl", "cc_grpc_library")
+ load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
+ 
+ # ZetaSQL Server
+-package(default_visibility = ["//zetasql/base:zetasql_implementation"])
++package(default_visibility = ["//visibility:public"])
+ 
+ cc_library(
+     name = "local_service",
+
+--- zetasql/public/proto/BUILD
++++ zetasql/public/proto/BUILD
+@@ -13,7 +13,7 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-package(default_visibility = ["//zetasql/base:zetasql_implementation"])
++package(default_visibility = ["//visibility:public"])
+ 
+ filegroup(
+     name = "type_annotation_filegroup",
+
+--- zetasql/resolved_ast/BUILD
++++ zetasql/resolved_ast/BUILD
+@@ -15,8 +15,9 @@
+ #
+ 
+ load("//zetasql/resolved_ast:build_rules.bzl", "gen_resolved_ast_files")
++load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+ 
+-package(default_visibility = ["//zetasql/base:zetasql_implementation"])
++package(default_visibility = ["//visibility:public"])
+ 
+ py_binary(
+     name = "gen_resolved_ast",
+
+--- zetasql/proto/BUILD
++++ zetasql/proto/BUILD
+@@ -15,7 +15,7 @@
+ #
+ 
+ # Package for non-public protos.
+-package(default_visibility = ["//zetasql/base:zetasql_implementation"])
++package(default_visibility = ["//visibility:public"])
+ 
+ proto_library(
+     name = "options_proto",
+
