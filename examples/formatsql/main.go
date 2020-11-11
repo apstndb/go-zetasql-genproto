@@ -14,11 +14,13 @@ import (
 func String(v string) *string {
 	return &v
 }
+
 func main() {
 	if err := _main(); err != nil {
 		log.Fatalln(err)
 	}
 }
+
 func _main() error {
 	address := "localhost:50051"
 	conn, err := grpc.Dial(
